@@ -26,6 +26,7 @@ public class Resident {
         flat.curRent = 0;
         flat.curDebt = 0;
         flat.curFine = 0;
+        flat.time.confirmRent();
         return pr;
     }
     public Resident(String name) { this.name = name; }
