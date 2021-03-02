@@ -1,6 +1,7 @@
 package practicalWork3Refactor;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class FlatHouse {
@@ -11,6 +12,14 @@ public class FlatHouse {
     }
     public void unregisterResident(Flat flat) {
         flat.setResident(null);
+    }
+    public void makeRent(Calendar calendar) {
+        for (Flat flat:
+             flats) {
+            if (flat.getResident() != null) {
+                paymentList.add(new Payment(flat, calendar));
+            }
+        }
     }
     public FlatHouse(int floors, int flats) {
         paymentList = new ArrayList<Payment>();

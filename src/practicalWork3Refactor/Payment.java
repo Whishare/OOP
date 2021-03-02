@@ -18,6 +18,10 @@ public class Payment {
             Date payDay = paymentDay.getTime();
             Date payPerDay = paymentPerDay.getTime();
             int differenceBetweenDays = payDay.getDay() - payPerDay.getDay();
+            if (paymentPerDay.get(Calendar.YEAR) != paymentDay.get(Calendar.YEAR)) {
+                int differenceBetweenYears = paymentPerDay.get(Calendar.YEAR) - paymentDay.get(Calendar.YEAR);
+                differenceBetweenDays = differenceBetweenYears * 365;
+            }
             if (differenceBetweenDays > 0) {
                 paymentDebt = paymentRent;
                 paymentRent = 0;
