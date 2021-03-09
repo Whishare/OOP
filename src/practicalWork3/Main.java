@@ -11,9 +11,7 @@ public class Main {
         flatHouse.flats[0].register(resident1);
         flatHouse.flats[1].register(resident2);
         flatHouse.flats[2].register(resident3);
-        flatHouse.flats[0].creditRent();
-        flatHouse.flats[1].creditRent();
-        flatHouse.flats[2].creditRent();
+        flatHouse.creditRent();
         flatHouse.reports.add(resident1.makeReport());
         flatHouse.reports.add(resident2.makeReport());
         flatHouse.reports.add(resident3.makeReport());

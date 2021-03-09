@@ -7,17 +7,18 @@ import java.util.List;
 public class FlatHouse {
     public Flat[] flats;
     public ArrayList<Payment> paymentList;
-    public void registerResident(Resident resident, Flat flat) {
-        flat.setResident(resident);
+    public void registerResident(Resident resident, int index) {
+        flats[index-1].setResident(resident);
     }
-    public void unregisterResident(Flat flat) {
-        flat.setResident(null);
+    public void unregisterResident(int index) {
+        flats[index-1].setResident(null);
     }
     public void makeRent(Calendar calendar) {
-        for (Flat flat:
-             flats) {
+        for (Flat flat: flats) {
             if (flat.getResident() != null) {
-                paymentList.add(new Payment(flat, calendar));
+                Payment payment = new Payment(flat, calendar);
+                paymentList.add(payment);
+                flat.getResident().paymentList.add(payment);
             }
         }
     }
@@ -26,6 +27,14 @@ public class FlatHouse {
         this.flats = new Flat[floors*flats];
         for(int i = 0; i < floors*flats; i++) {
             this.flats[i] = new Flat(50, i+1);
+        }
+    }
+    public void showPaidList(PaymentSort obj) {
+        paymentList.sort(obj);
+        for(Payment payment : paymentList) {
+            if (payment.getPaid()) {
+                System.out.println(payment.toString());
+            }
         }
     }
 }

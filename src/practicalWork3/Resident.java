@@ -8,6 +8,7 @@ public class Resident {
     public Flat flat;
     public PaymentReport makeReport() {
         Calendar curDate = new GregorianCalendar();
+        //curDate.add(Calendar.DAY_OF_YEAR,21);
         int differenceBetweenDays = curDate.get(Calendar.DAY_OF_YEAR) - flat.time.payDate.get(Calendar.DAY_OF_YEAR);
         System.out.println(curDate.getTime());
         System.out.println('\n');
