@@ -8,10 +8,18 @@ public class FlatHouse {
     public Flat[] flats;
     public ArrayList<Payment> paymentList;
     public void registerResident(Resident resident, int index) {
-        flats[index-1].setResident(resident);
+        try {
+            flats[index-1].setResident(resident);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Flat with this index doesn't exist!");
+        }
     }
     public void unregisterResident(int index) {
-        flats[index-1].setResident(null);
+        try {
+            flats[index - 1].setResident(null);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Flat with this index doesn't exist!");
+        }
     }
     public void makeRent(Calendar calendar) {
         for (Flat flat: flats) {
@@ -28,6 +36,10 @@ public class FlatHouse {
         for(int i = 0; i < floors*flats; i++) {
             this.flats[i] = new Flat(50, i+1);
         }
+    }
+    public FlatHouse(Flat[] flats) {
+        this.flats = flats;
+        paymentList = new ArrayList<Payment>();
     }
     public void showPaidList(PaymentSort obj) {
         paymentList.sort(obj);

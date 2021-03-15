@@ -12,6 +12,6 @@ public class Flat {
     public Flat(int area, int index) {
         this.index = index;
         this.area = area;
-        this.rent = (area * 20);
+        this.rent = (area * 200);
     }
 }
