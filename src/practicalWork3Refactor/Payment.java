@@ -52,12 +52,7 @@ public class Payment {
             this.paymentDay = new GregorianCalendar();
             Date payDay = paymentDay.getTime();
             Date payPerDay = paymentPerDay.getTime();
-            //differenceBetweenDays = payDay.getTime()/86400000L - payPerDay.getTime()/86400000L;
             differenceBetweenDays = (int)( (payDay.getTime() - payPerDay.getTime()) / (1000 * 60 * 60 * 24));
-/*            if (paymentPerDay.get(Calendar.YEAR) != paymentDay.get(Calendar.YEAR)) {
-                int differenceBetweenYears = paymentPerDay.get(Calendar.YEAR) - paymentDay.get(Calendar.YEAR);
-                differenceBetweenDays += differenceBetweenYears * 365;
-            }*/
             if (differenceBetweenDays > 1) {
                 paymentDebt = paymentRent;
                 paymentRent = 0;

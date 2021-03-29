@@ -7,21 +7,25 @@ import java.util.List;
 public class FlatHouse {
     public Flat[] flats;
     public ArrayList<Payment> paymentList;
-    public void registerResident(Resident resident, int index) {
+    public boolean registerResident(Resident resident, int index) {
         try {
             flats[index-1].setResident(resident);
+            return true;
         } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("Flat with this index doesn't exist!");
+            return false;
         }
     }
-    public void unregisterResident(int index) {
+    public boolean unregisterResident(int index) {
         try {
             flats[index - 1].setResident(null);
+            return true;
         } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("Flat with this index doesn't exist!");
+            return false;
         }
     }
-    public void makeRent(Calendar calendar) {
+    public ArrayList<Payment> makeRent(Calendar calendar) {
         for (Flat flat: flats) {
             if (flat.getResident() != null) {
                 Payment payment = new Payment(flat, calendar);
@@ -29,6 +33,7 @@ public class FlatHouse {
                 flat.getResident().paymentList.add(payment);
             }
         }
+        return paymentList;
     }
     public FlatHouse(int floors, int flats) {
         paymentList = new ArrayList<Payment>();
