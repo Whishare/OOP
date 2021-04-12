@@ -6,11 +6,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Payment {
+    public int id;
+    public int flatIndex;
     private boolean paid = true;
     private Flat flat;
-    private int paymentRent;
-    private int paymentDebt;
-    private int paymentFine;
+    public int paymentRent;
+    public int paymentDebt;
+    public int paymentFine;
     private Calendar paymentPerDay;
     private Calendar paymentDay;
     private int differenceBetweenDays;
@@ -35,6 +37,7 @@ public class Payment {
     public Calendar getPaymentDay() {
         return  paymentDay;
     }
+    public Calendar getPaymentPerDay() {return paymentPerDay;}
     public String getName() {
         return flat.getResident().getName();
     }
@@ -88,6 +91,18 @@ public class Payment {
         this.paymentFine = paymentFine;
         this.differenceBetweenDays = differenceBetweenDays;
     }
+    public Payment(Flat flat, int paymentRent, int paymentDebt, int paymentFine, Calendar paymentPerDay, Calendar paymentDay) {
+        this.flat = flat;
+        this.paymentRent = paymentRent;
+        this.paymentDebt = paymentDebt;
+        this.paymentFine = paymentFine;
+        this.paymentDay = paymentDay;
+        this.paymentPerDay = paymentPerDay;
+    }
+    public String toStringg() {
+        return flat.getIndex()+","+paymentRent+","+paymentDebt+","+paymentFine+"\n";
+    }
+
 }
 class PaymentSort implements Comparator<Payment>{
     @Override

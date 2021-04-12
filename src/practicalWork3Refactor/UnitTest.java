@@ -19,9 +19,9 @@ class UnitTest {
         Resident resident = new Resident("Mykola");
         FlatHouse flatHouse = new FlatHouse(1,1);
         boolean isRegistered = flatHouse.registerResident(resident,1);
-        assertEquals(isRegistered, true);
+        assertTrue(isRegistered);
         boolean isUnregistered = flatHouse.unregisterResident(1);
-        assertEquals(isUnregistered, true);
+        assertTrue(isUnregistered);
     }
     @ParameterizedTest
     @MethodSource ("generateRentData")
