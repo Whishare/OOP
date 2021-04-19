@@ -15,4 +15,9 @@ public class Resident {
         this.name = name;
         paymentList = new ArrayList<Payment>();
     }
+    public void pay() {
+        for(Payment p : paymentList) {
+            p.pay();
+        }
+    }
 }

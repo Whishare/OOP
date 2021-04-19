@@ -1,7 +1,9 @@
 package practicalWork3Refactor;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class FlatHouse {
@@ -10,22 +12,40 @@ public class FlatHouse {
     public boolean registerResident(Resident resident, int index) {
         try {
             flats[index-1].setResident(resident);
+            flats[index-1].update();
             return true;
         } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("Flat with this index doesn't exist!");
             return false;
+        }
+    }
+    public Flat getFlat(int index) {
+        try {
+            return flats[index-1];
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Flat with this index doesn't exist!");
+            return null;
+        }
+    }
+    public void removeFlat(int index) {
+        try {
+            flats[index-1] = null;
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Flat with this index doesn't exist!");
         }
     }
     public boolean unregisterResident(int index) {
         try {
             flats[index - 1].setResident(null);
+            flats[index-1].update();
             return true;
         } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("Flat with this index doesn't exist!");
             return false;
         }
     }
-    public ArrayList<Payment> makeRent(Calendar calendar) {
+    public ArrayList<Payment> makeRent(int year, int month) {
+        Calendar calendar = new GregorianCalendar(year,month,1);
         for (Flat flat: flats) {
             if (flat.getResident() != null) {
                 Payment payment = new Payment(flat, calendar);

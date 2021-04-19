@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-class DAO_Flat implements DAO<Flat> {
+public class DAO_Flat implements DAO<Flat> {
     @Override
     public Flat create(Flat entity) {
         //INSERT INTO Flat (area, residentIndex) VALUES (?, ?);

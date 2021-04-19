@@ -98,7 +98,7 @@ public class DAO_Payment implements DAO<Payment> {
                 calPerDay.setTime(perDay);
                 Calendar calDay = new GregorianCalendar();
                 calDay.setTime(day);
-                Payment temp = new Payment(new Flat(0,flatIndex),rent,debt,fine,calPerDay,calDay);
+                Payment temp = new Payment(new Flat(0,flatIndex),true,rent,debt,fine,calPerDay,calDay);
                 temp.id = id;
                 result.add(temp);
             }
@@ -129,7 +129,7 @@ public class DAO_Payment implements DAO<Payment> {
                 calPerDay.setTime(perDay);
                 Calendar calDay = new GregorianCalendar();
                 calDay.setTime(day);
-                Payment temp = new Payment(new Flat(0,flatIndex),rent,debt,fine,calPerDay,calDay);
+                Payment temp = new Payment(new Flat(0,flatIndex),true,rent,debt,fine,calPerDay,calDay);
                 temp.id = id;
                 result.add(temp);
             }
@@ -147,13 +147,17 @@ public class DAO_Payment implements DAO<Payment> {
         flatsInAll.get(0).setResident(new Resident("Mykola"));
         flatsInAll.get(0).setArea(78);
         dao.update(flatsInAll.get(0));*/
-        Payment payment = new Payment(new Flat(25,2),1200,200,0, new GregorianCalendar(2021,Calendar.MARCH,1), new GregorianCalendar(2021,Calendar.APRIL,6));
+        Payment payment = new Payment(new Flat(25,2),false,1200,200,0, new GregorianCalendar(2021,Calendar.MARCH,1), new GregorianCalendar(2021,Calendar.APRIL,6));
         //dao.create(payment);
         List<Payment> payments = dao.findAll();
-        List<Payment> payments1 = dao.find(payments.get(0));
-        payments1.get(0).paymentRent = 2550;
-        payments1.get(0).paymentDebt = 250;
-        payments1.get(0).paymentFine = 125;
+        List<Payment> payments1 = dao.find(payments.get(2));
+        payments1.get(0).getFlat().setIndex(3);
+        payments1.get(0).paymentRent = 2554;
+        payments1.get(0).paymentDebt = 322;
+        payments1.get(0).paymentFine = 0;
+        payments1.get(0).paymentPerDay = new GregorianCalendar(2021,Calendar.FEBRUARY,1);
+        payments1.get(0).paymentDay = new GregorianCalendar();
+        payments1.get(0).paid = false;
         dao.update(payments1.get(0));
         System.out.println(payments1.get(0).toStringg());
     }

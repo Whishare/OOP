@@ -1,20 +1,23 @@
 package practicalWork3Refactor;
 
+import practicalWork3Refactor.databases.DAO_Payment;
+
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Payment {
+    private DAO_Payment dao_payment = new DAO_Payment();
     public int id;
     public int flatIndex;
-    private boolean paid = true;
+    public boolean paid;
     private Flat flat;
     public int paymentRent;
     public int paymentDebt;
     public int paymentFine;
-    private Calendar paymentPerDay;
-    private Calendar paymentDay;
+    public Calendar paymentPerDay;
+    public Calendar paymentDay;
     private int differenceBetweenDays;
     public boolean getPaid() {
         return paid;
@@ -65,6 +68,7 @@ public class Payment {
             }
             paid = true;
         }
+        dao_payment.update(this);
         return this;
     }
     @Override
@@ -84,20 +88,24 @@ public class Payment {
         this.paymentFine = 0;
         this.paymentDay = paymentPerDay;
         this.paymentPerDay = paymentPerDay;
+        dao_payment.create(this);
     }
     public Payment(int paymentRent, int paymentDebt, int paymentFine, int differenceBetweenDays) {
         this.paymentRent = paymentRent;
         this.paymentDebt = paymentDebt;
         this.paymentFine = paymentFine;
         this.differenceBetweenDays = differenceBetweenDays;
+        dao_payment.create(this);
     }
-    public Payment(Flat flat, int paymentRent, int paymentDebt, int paymentFine, Calendar paymentPerDay, Calendar paymentDay) {
+    public Payment(Flat flat,boolean paid, int paymentRent, int paymentDebt, int paymentFine, Calendar paymentPerDay, Calendar paymentDay) {
+        this.paid = paid;
         this.flat = flat;
         this.paymentRent = paymentRent;
         this.paymentDebt = paymentDebt;
         this.paymentFine = paymentFine;
         this.paymentDay = paymentDay;
         this.paymentPerDay = paymentPerDay;
+        dao_payment.create(this);
     }
     public String toStringg() {
         return flat.getIndex()+","+paymentRent+","+paymentDebt+","+paymentFine+"\n";

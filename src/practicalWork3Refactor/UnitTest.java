@@ -38,7 +38,7 @@ class UnitTest {
         Resident resident = new Resident("Mykola");
         FlatHouse flatHouse = new FlatHouse(new Flat[] {new Flat(10,1)});
         flatHouse.registerResident(resident,1);
-        flatHouse.makeRent(new GregorianCalendar());
+        //flatHouse.makeRent(new GregorianCalendar());
         return Stream.of(
                 Arguments.of(flatHouse, payments)
         );
@@ -51,7 +51,7 @@ class UnitTest {
         FlatHouse flatHouse = new FlatHouse(flats);
         Resident resident = new Resident("Resident");
         flatHouse.registerResident(resident,1);
-        flatHouse.makeRent(dayPerDay);
+        //flatHouse.makeRent(dayPerDay);
         Payment actualPayment = resident.paymentList.get(0).pay();
         expectedPayment.setData(actualPayment);
         assertEquals(expectedPayment.getRent(),actualPayment.getRent());
