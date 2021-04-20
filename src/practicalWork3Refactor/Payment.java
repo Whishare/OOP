@@ -45,7 +45,7 @@ public class Payment {
         return flat.getResident().getName();
     }
     public int getIndex() {
-        return flat.getIndex();
+        return flat.getNumber();
     }
     public void setData(Payment e) {
         this.flat = e.getFlat();
@@ -74,10 +74,10 @@ public class Payment {
     @Override
     public String toString() {
         if (paid) {
-            return flat.getIndex() + "," + flat.getResident().getName() + "," + paymentRent + "," + paymentDebt + "," + paymentFine + "," + paymentPerDay.getTime() + ","
+            return flat.getNumber() + "," + flat.getResident().getName() + "," + paymentRent + "," + paymentDebt + "," + paymentFine + "," + paymentPerDay.getTime() + ","
                     + paymentDay.getTime() + "," + paid + "," + differenceBetweenDays;
         }
-        return flat.getIndex()+","+flat.getResident().getName()+","+paymentRent+","+paymentDebt+","+paymentFine+","+paymentPerDay.getTime()+","
+        return flat.getNumber()+","+flat.getResident().getName()+","+paymentRent+","+paymentDebt+","+paymentFine+","+paymentPerDay.getTime()+","
                 +","+paid;
     }
     public Payment(Flat flat, Calendar paymentPerDay) {
@@ -108,7 +108,7 @@ public class Payment {
         dao_payment.create(this);
     }
     public String toStringg() {
-        return flat.getIndex()+","+paymentRent+","+paymentDebt+","+paymentFine+"\n";
+        return flat.getNumber()+","+paymentRent+","+paymentDebt+","+paymentFine+"\n";
     }
 
 }

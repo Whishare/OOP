@@ -2,7 +2,6 @@ package practicalWork3Refactor.databases;
 
 import practicalWork3Refactor.Flat;
 import practicalWork3Refactor.Payment;
-import practicalWork3Refactor.Resident;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class DAO_Payment implements DAO<Payment> {
         try {
             String sql = "INSERT INTO Payment (flatIndex, paid, rent, debt, fine, perDay, day) VALUES (?,?,?,?,?,?,?);";
             PreparedStatement statement = DatabaseConnection.getInstance().connection.prepareStatement(sql);
-            statement.setInt(1,entity.getFlat().getIndex());
+            statement.setInt(1,entity.getFlat().getNumber());
             statement.setBoolean(2,entity.getPaid());
             statement.setInt(3,entity.getRent());
             statement.setInt(4,entity.getDebt());
@@ -45,7 +44,7 @@ public class DAO_Payment implements DAO<Payment> {
         try {
             String sql = "UPDATE Payment SET flatIndex = ?,paid = ?,rent = ?,debt = ?,fine = ?,perDay = ?,day = ? WHERE id = ?;";
             PreparedStatement statement = DatabaseConnection.getInstance().connection.prepareStatement(sql);
-            statement.setInt(1,entity.getFlat().getIndex());
+            statement.setInt(1,entity.getFlat().getNumber());
             statement.setBoolean(2,entity.getPaid());
             statement.setInt(3,entity.getRent());
             statement.setInt(4,entity.getDebt());
@@ -151,7 +150,7 @@ public class DAO_Payment implements DAO<Payment> {
         //dao.create(payment);
         List<Payment> payments = dao.findAll();
         List<Payment> payments1 = dao.find(payments.get(2));
-        payments1.get(0).getFlat().setIndex(3);
+        payments1.get(0).getFlat().setNumber(3);
         payments1.get(0).paymentRent = 2554;
         payments1.get(0).paymentDebt = 322;
         payments1.get(0).paymentFine = 0;

@@ -2,8 +2,6 @@ package practicalWork3Refactor.databases;
 
 import practicalWork3Refactor.Flat;
 import practicalWork3Refactor.Resident;
-import practicalWork3Refactor.databases.DAO;
-import practicalWork3Refactor.databases.DatabaseConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,8 +28,8 @@ public class DAO_Flat implements DAO<Flat> {
             ResultSet rs = statement.getGeneratedKeys();
             rs.next();
             int key = rs.getInt(1);
-            entity.setIndex(key);
-            System.out.println(entity.getIndex());
+            entity.setNumber(key);
+            System.out.println(entity.getNumber());
         }
         catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -53,7 +51,7 @@ public class DAO_Flat implements DAO<Flat> {
             catch(NullPointerException ex) {
                 statement.setNull(2,0);
             }
-            statement.setInt(3,entity.getIndex());
+            statement.setInt(3,entity.getNumber());
             result = statement.execute();
         }
         catch (SQLException sqlException) {
@@ -85,7 +83,7 @@ public class DAO_Flat implements DAO<Flat> {
         try {
             String sql = "SELECT * FROM Flat Where \"index\" = ?";
             PreparedStatement statement = DatabaseConnection.getInstance().connection.prepareStatement(sql);
-            statement.setInt(1,entity.getIndex());
+            statement.setInt(1,entity.getNumber());
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()) {
                 int index = resultSet.getInt(1);
@@ -93,7 +91,7 @@ public class DAO_Flat implements DAO<Flat> {
                 String name = resultSet.getString(3);
                 Flat tempFlat = new Flat(area);
                 tempFlat.setResident(new Resident(name));
-                tempFlat.setIndex(index);
+                tempFlat.setNumber(index);
                 result.add(tempFlat);
             }
         }
@@ -117,7 +115,7 @@ public class DAO_Flat implements DAO<Flat> {
                 String name = resultSet.getString(3);
                 Flat tempFlat = new Flat(area);
                 tempFlat.setResident(new Resident(name));
-                tempFlat.setIndex(index);
+                tempFlat.setNumber(index);
                 result.add(tempFlat);
             }
         }
