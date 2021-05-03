@@ -8,7 +8,7 @@ import java.util.Map;
 public class Solution {
     public static void main(String[] args) {
         Solution sol = new Solution();
-        System.out.println(sol.solution("BBocCOboad"));
+        System.out.println(sol.solution("AsdsdsdsdaSD"));
     }
     //Главный метод - возвращает размер наименьшей сбалансированной строки
     public int solution(String s) {
